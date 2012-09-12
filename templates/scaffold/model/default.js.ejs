@@ -1,0 +1,14 @@
+var mongoose = require('mongoose'),
+    Schema = mongoose.Schema;
+
+var <%= model.singularCapitalized %> = new Schema({
+<% for(var i in properties) { -%>
+    <%=properties[i].name%>: { type: <%=properties[i].type -%>
+<% for(var j in properties[i].validators) { -%>
+, <%=properties[i].validators[j].validator%>: <%=properties[i].validators[j].value -%>
+<% } -%> }
+<%= i<properties.length-1?',':''%>
+<% } -%>
+});
+
+module.exports = mongoose.model('<%= model.pluralCapitalized %>', <%= model.singularCapitalized %>);

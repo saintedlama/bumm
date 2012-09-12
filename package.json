@@ -1,0 +1,22 @@
+{
+  "name": "bumm",
+  "description": "Opinionated project generator for node.js relying on express and mongoose",
+  "version": "0.1.0",
+  "bin": "bin/cli.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": "",
+  "author": "",
+  "license": "BSD",
+  "dependencies": {
+    "ejs": "0.8.x",
+    "optimist": "0.3.x",
+    "wrench": "1.3.x",
+    "fleck": "0.5.x"
+  },
+  "devDependencies": {
+    "mocha": "1.4.x",
+	  "should": "1.1.x"
+  }
+}

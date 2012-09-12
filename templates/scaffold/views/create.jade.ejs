@@ -1,0 +1,34 @@
+extends ../layout
+
+block content
+
+  form#<%=model.singular%>-form.form-horizontal(action="/<%=model.plural%>/create", method="POST")
+    fieldset
+      legend Create a new <%=model.singularCapitalized%>
+    
+<% for(var i in properties) { -%>
+<% if(properties[i].name !== 'id') { -%>
+      .control-group
+        label(for="<%= properties[i].name %>", class="control-label") <%= properties[i].name %>
+        .controls
+<% if(properties[i].type === 'String') { -%>
+<% if(properties[i].name === 'password') { -%>
+          input.span6(type="password", name="<%= properties[i].name %>", value=<%=model.singular%>.<%=properties[i].name%>)
+<% } else { -%>
+          input.span6(type="text", name="<%= properties[i].name %>", value=<%=model.singular%>.<%=properties[i].name%>)
+<% } -%>
+<% } else if(properties[i].type === 'Number' || properties[i].type === 'int') { -%>
+          input.span2(type="number", name="<%= properties[i].name %>", value=<%=model.singular%>.<%=properties[i].name%>)
+<% } else if(properties[i].type === 'Boolean') { -%>
+          input.span1(type="checkbox",name="<%= properties[i].name %>", checked=<%=properties[i].name%>)
+<% } else if(properties[i].type === 'Date') { -%>
+          input.span2(type="date", name="<%= properties[i].name %>", value=<%=model.singular%>.<%=properties[i].name%>)
+<% } else { -%>
+          | <%= properties[i].type %>
+<% } -%>
+<% } -%>
+<% } -%>
+    .form-actions
+      a.btn.btn-warning(href="/<%=model.plural%>") Back
+      | 
+      input.btn.btn-primary(type="submit", value="Create")

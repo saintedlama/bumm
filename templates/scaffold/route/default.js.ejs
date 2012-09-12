@@ -1,0 +1,75 @@
+var express = require('express'),
+    <%=model.singularCapitalized%> = require('../models/<%=model.singular%>'),
+    mapper = require('../lib/model-mapper');
+
+
+module.exports = function(app) {
+
+    app.param('<%=model.singular%>Id', function(req, res, next, id) {
+        <%=model.singularCapitalized%>.findOne({ _id : id }, function(err, <%=model.singular%>) {
+            if (err) {
+                next(err);
+            } else {
+                res.locals.<%=model.singular%> = <%=model.singular%>;
+                next();
+            }
+        });
+    });
+    
+    app.get('/<%=model.plural%>', function(req, res) {
+        <%=model.singularCapitalized%>.find({}, function(err, <%=model.plural%>) {
+            res.render('<%=model.singular%>/index', { <%=model.plural%> : <%=model.plural%> });
+        });
+    });
+
+    app.get('/<%=model.plural%>/create', function(req, res) {
+        res.render('<%=model.singular%>/create', { <%=model.singular%> : new <%=model.singularCapitalized%>() });
+    });
+
+    app.post('/<%=model.plural%>/create', function(req, res) { 
+        var <%=model.singular%> = new <%=model.singularCapitalized%>(req.body);
+
+        <%=model.singular%>.save(function(err) {
+            if (err) {
+                res.render('<%=model.singular%>/create', {
+                    <%=model.singular%> : <%=model.singular%>
+                });
+            } else {
+                res.redirect('/<%=model.plural%>');
+            }
+        });
+    });
+
+    app.get('/<%=model.plural%>/:<%=model.singular%>Id/edit', function(req, res) {
+        res.render('<%=model.singular%>/edit');
+    });
+
+    app.post('/<%=model.plural%>/:<%=model.singular%>Id/edit', function(req, res) {
+        var <%=model.singular%> = res.locals.<%=model.singular%>;
+        mapper.map(req.body).to(<%=model.singular%>);
+
+        <%=model.singular%>.save(function(err) {
+            if (err) {
+                res.render('<%=model.singular%>/edit', {
+                    <%=model.singular%> : <%=model.singular%>
+                });
+            } else {
+                res.redirect('/<%=model.plural%>');
+            }
+        });
+    });
+
+    app.get('/<%=model.plural%>/:<%=model.singular%>Id/detail', function(req, res) {
+        res.render('<%=model.singular%>/detail');
+    });
+
+    app.get('/<%=model.plural%>/:<%=model.singular%>Id/delete', function(req, res) {
+        res.render('<%=model.singular%>/delete');
+    });
+
+    app.post('/<%=model.plural%>/:<%=model.singular%>Id/delete', function(req, res) {
+        <%=model.singularCapitalized%>.remove({ _id : req.params.id }, function(err) {
+            res.redirect('/<%=model.plural%>');
+        });
+    });
+}

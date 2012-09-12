@@ -1,0 +1,25 @@
+extends ../layout
+
+block content
+  h2.display-data All <%= model.pluralCapitalized %>
+    a.btn.btn-primary.pull-right(href="/<%=model.plural%>/create") Create a new <%= model.singularCapitalized %>
+
+  ul
+    each <%= model.singular %> in <%= model.plural %>
+      li.list-item
+<% if(defaultProperty) { -%>
+        span= <%=model.singular%>.<%=defaultProperty.name%>
+<% } else { -%>
+        span <%=model.singularCapitalized%>
+<% } -%>
+        a(href="/<%=model.plural%>/" + <%= model.singular %>._id + "/detail")
+          i.icon-zoom-in
+          | Show 
+        || 
+        a(href="/<%=model.plural%>/" + <%= model.singular %>._id + "/edit")
+          i.icon-edit
+          | Edit 
+        || 
+        a(href="/<%=model.plural%>/" + <%= model.singular %>._id + "/delete")
+          i.icon-remove
+          | Delete
