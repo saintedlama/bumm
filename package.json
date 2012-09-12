@@ -3,11 +3,12 @@
   "description": "Opinionated project generator for node.js relying on express and mongoose",
   "version": "0.1.0",
   "bin": "bin/cli.js",
-  "scripts": {
-    "test": "mocha"
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/saintedlama/bumm.git"
   },
   "repository": "",
-  "author": "",
+  "author": "Christoph Walcher <christoph.walcher@gmail.com>",
   "license": "BSD",
   "dependencies": {
     "ejs": "0.8.x",
