@@ -28,6 +28,7 @@ block content
 <% } else { -%>
           | <%= properties[i].type %>
 <% } -%>
+          !{errorFor('<%=model.singular%>', '<%=properties[i].name%>')}
 <% } -%>
 <% } -%>
     .form-actions
