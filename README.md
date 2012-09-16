@@ -36,8 +36,9 @@ should have two properties "title" and "description" where title is required.
 Model validators are specified after property name and type in plain mongoose syntax. In case
 no type is specified the property will be of type string.
 
-Mongoose types 'String', 'Number', 'Date', 'Buffer', 'Boolean', 'ObjectId', 'Array' are supported. Types
-are case insensitive.
+Mongoose types 'String', 'Number', 'Date', 'Buffer', 'Boolean', 'ObjectId', 'Array' are supported. Additionally
+the types 'DateTime' and 'Textbox' are supported which result in a datetime html 5 input tag and a textbox tag.
+Types are case insensitive.
 
 
 Now start `node app.js` and navigate your browser to `http://localhost:3000/tests`
