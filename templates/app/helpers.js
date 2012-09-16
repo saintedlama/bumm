@@ -1,3 +1,5 @@
+var util = require('util');
+
 module.exports = function (app) {
     app.locals({
         errorFor : function (model, property) {
@@ -8,6 +10,14 @@ module.exports = function (app) {
                     return '<span class="error help-inline">' + modelToValidate.errors[property].message + '</span>';
                 }
             }
+        },
+
+        display : function(value) {
+            if (util.isDate(value)) {
+                return value.toLocaleDateString();
+            }
+
+            return value;
         }
     });
 };
