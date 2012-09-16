@@ -3,7 +3,7 @@ var mongoose = require('mongoose'),
 
 var <%= model.singularCapitalized %> = new Schema({
 <% for(var i in properties) { -%>
-    <%=properties[i].name%>: { type: <%=properties[i].type -%>
+    <%=properties[i].name%>: { type: <%=properties[i].schemaType -%>
 <% for(var j in properties[i].validators) { -%>
 , <%=properties[i].validators[j].validator%>: <%=properties[i].validators[j].value -%>
 <% } -%> }
