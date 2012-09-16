@@ -22,6 +22,11 @@ Next cd to testapp
 
 	cd testapp
 
+And install required packages through npm
+
+	npm install
+
+## Scaffolding
 Create a model, route and views via `scaffold` command. The model
 should have two properties "title" and "description" where title is required.
 
