@@ -6,7 +6,6 @@ block content
       legend Edit <%=model.singularCapitalized%>
     
 <% for(var i in properties) { -%>
-<% if(properties[i].name !== 'id') { -%>
       .control-group
         label(for="<%= properties[i].name %>", class="control-label") <%= properties[i].nameCapitalized %>
         .controls
@@ -30,7 +29,6 @@ block content
           | <%= properties[i].type %>
 <% } -%>
           !{errorFor('<%=model.singular%>', '<%=properties[i].name%>')}
-<% } -%>
 <% } -%>
 
     .form-actions
