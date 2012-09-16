@@ -17,14 +17,11 @@ block content
         td= display(<%=model.singular%>.<%=properties[i].name %>)
 <% } %>
         td
-          a(href="/<%=model.plural%>/" + <%= model.singular %>._id + "/detail")
+          a(href="/<%=model.plural%>/" + <%= model.singular %>._id + "/detail", title="Detail")
             i.icon-zoom-in
-            | Show 
-          || 
-          a(href="/<%=model.plural%>/" + <%= model.singular %>._id + "/edit")
+          | 
+          a(href="/<%=model.plural%>/" + <%= model.singular %>._id + "/edit", title="Edit")
             i.icon-edit
-            | Edit 
-          || 
-          a(href="/<%=model.plural%>/" + <%= model.singular %>._id + "/delete")
+          | 
+          a(href="/<%=model.plural%>/" + <%= model.singular %>._id + "/delete", title="Delete")
             i.icon-remove
-            | Delete
