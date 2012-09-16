@@ -3,13 +3,15 @@
   "description": "Opinionated project generator for node.js relying on express and mongoose",
   "version": "0.1.0",
   "bin": "bin/cli.js",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/saintedlama/bumm.git"
-  },
-  "repository": "",
+  "repository": "git://github.com/saintedlama/bumm",
   "author": "Christoph Walcher <christoph.walcher@gmail.com>",
   "license": "BSD",
+  "keywords": [
+    "web",
+	"project generator",
+	"scaffold",
+	"express"
+  ],
   "dependencies": {
     "ejs": "0.8.x",
     "optimist": "0.3.x",
