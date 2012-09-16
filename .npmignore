@@ -2,5 +2,7 @@ test
 testapp
 
 .idea
+.gitattributes
 
 bumm*.tgz
+*~
