@@ -4,7 +4,7 @@ block content
   h2.display-data All <%= model.pluralCapitalized %>
     a.btn.btn-primary.pull-right(href="/<%=model.plural%>/create") Create a new <%= model.singularCapitalized %>
 
-  table.table-condensed.table-striped(style="width:100%")
+  table.table.table-bordered.table-striped(style="width:100%")
     tr
 <% for(var i in properties) { -%>
         th <%=properties[i].nameCapitalized %>
