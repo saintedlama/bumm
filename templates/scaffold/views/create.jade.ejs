@@ -23,6 +23,8 @@ block content
           input.span1(type="checkbox",name="<%= properties[i].name %>", checked=<%=properties[i].name%>)
 <% } else if(properties[i].type === 'Date') { -%>
           input.span2(type="date", name="<%= properties[i].name %>", value=<%=model.singular%>.<%=properties[i].name%>)
+<% } else if(properties[i].type === 'Datetime') { -%>
+          input.span2(type="datetime", name="<%= properties[i].name %>", value=<%=model.singular%>.<%=properties[i].name%>)
 <% } else { -%>
           | <%= properties[i].type %>
 <% } -%>

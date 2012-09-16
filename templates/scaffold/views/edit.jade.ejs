@@ -21,7 +21,9 @@ block content
 <% } else if(properties[i].type === 'Boolean') { -%>
           input.span1(type="checkbox",name="<%= properties[i].name %>", checked=<%=model.singular%>.<%=properties[i].name%>)
 <% } else if(properties[i].type === 'Date') { -%>
-          input.span2(type="date", name="<%= properties[i].name %>")
+          input.span2(type="date", name="<%= properties[i].name %>", value=<%=model.singular%>.<%=properties[i].name%>))
+<% } else if(properties[i].type === 'Datetime') { -%>
+          input.span2(type="datetime", name="<%= properties[i].name %>", value=<%=model.singular%>.<%=properties[i].name%>)
 <% } else { -%>
           | <%= properties[i].type %>
 <% } -%>
