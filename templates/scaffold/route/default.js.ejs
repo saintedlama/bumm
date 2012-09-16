@@ -68,7 +68,7 @@ module.exports = function(app) {
     });
 
     app.post('/<%=model.plural%>/:<%=model.singular%>Id/delete', function(req, res) {
-        <%=model.singularCapitalized%>.remove({ _id : req.params.id }, function(err) {
+        <%=model.singularCapitalized%>.remove({ _id : req.params.<%=model.singular%>Id }, function(err) {
             res.redirect('/<%=model.plural%>');
         });
     });
