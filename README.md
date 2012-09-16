@@ -6,7 +6,7 @@ additional libraries or frameworks. Just plain express and mongoose!
 
 # Installing Bumm
 
-	npm install bum -g
+	npm install bumm -g
 
 # Mini Tutorial
 
