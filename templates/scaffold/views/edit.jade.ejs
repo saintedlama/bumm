@@ -8,7 +8,7 @@ block content
 <% for(var i in properties) { -%>
 <% if(properties[i].name !== 'id') { -%>
       .control-group
-        label(for="<%= properties[i].name %>", class="control-label") <%= properties[i].name %>
+        label(for="<%= properties[i].name %>", class="control-label") <%= properties[i].nameCapitalized %>
         .controls
 <% if(properties[i].type === 'String') { -%>
 <% if(properties[i].name === 'password') { -%>
@@ -19,14 +19,16 @@ block content
 <% } else if(properties[i].type === 'Number' || properties[i].type === 'int') { -%>
           input.span2(type="number", name="<%= properties[i].name %>", value=<%=model.singular%>.<%=properties[i].name%>)
 <% } else if(properties[i].type === 'Boolean') { -%>
-          input.span1(type="checkbox",name="<%= properties[i].name %>", checked=<%=properties[i].name%>)
+          input.span1(type="checkbox",name="<%= properties[i].name %>", checked=<%=model.singular%>.<%=properties[i].name%>)
 <% } else if(properties[i].type === 'Date') { -%>
           input.span2(type="date", name="<%= properties[i].name %>")
 <% } else { -%>
           | <%= properties[i].type %>
 <% } -%>
+          !{errorFor('<%=model.singular%>', '<%=properties[i].name%>')}
 <% } -%>
 <% } -%>
+
     .form-actions
       a.btn.btn-warning(href="/<%=model.plural%>") Back
       | 

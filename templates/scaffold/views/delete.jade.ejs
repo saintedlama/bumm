@@ -10,7 +10,7 @@ block content
 <% for(var i in properties) { -%>
         tr
           td <%=properties[i].nameCapitalized %>
-          td= <%=model.singular%>.<%=properties[i].name %>
+          td= display(<%=model.singular%>.<%=properties[i].name %>)
 <% } %>
 
   form#<%=model.singular%>-form.form-horizontal(action="/<%=model.plural%>/" + <%=model.singular%>._id + "/delete", method="POST")

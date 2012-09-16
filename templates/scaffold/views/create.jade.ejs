@@ -9,7 +9,7 @@ block content
 <% for(var i in properties) { -%>
 <% if(properties[i].name !== 'id') { -%>
       .control-group
-        label(for="<%= properties[i].name %>", class="control-label") <%= properties[i].name %>
+        label(for="<%= properties[i].name %>", class="control-label") <%= properties[i].nameCapitalized %>
         .controls
 <% if(properties[i].type === 'String') { -%>
 <% if(properties[i].name === 'password') { -%>
