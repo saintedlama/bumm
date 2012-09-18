@@ -6,7 +6,7 @@ usage = [
     , ''
     , 'Options:'
     , '  --help, -h                 Output this usage dialog'
-    , '  --version, -v              Output the version of Bumm that\'s installed'
+    , '  --version, -v              Output the version of bumm'
     , '  --templateDir, -t <dir>    Specifies template directory. This option can be used'
     , '                             to build a custom template set. You can also set the'
     , '                             the environment variable "BUMM_TEMPLATE_DIR" to specify.'
