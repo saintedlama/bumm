@@ -8,9 +8,9 @@
   "license": "BSD",
   "keywords": [
     "web",
-	"project generator",
-	"scaffold",
-	"express"
+    "project generator",
+    "scaffold",
+    "express"
   ],
   "dependencies": {
     "ejs": "0.8.x",
