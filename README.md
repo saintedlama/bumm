@@ -53,7 +53,7 @@ Usage:
 
 Options:
   --help, -h                 Output this usage dialog
-  --version, -v              Output the version of Geddy that's installed
+  --version, -v              Output the version of bumm
 
 Commands:
   app <name>                 Create a new application
