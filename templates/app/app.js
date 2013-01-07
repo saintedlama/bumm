@@ -6,6 +6,10 @@ var path = require('path'),
 
 var app = express();
 
+// Express settings
+app.disable('x-powered-by');
+
+
 // Configuration
 app.configure(function(){
     app.set('views', __dirname + '/views');
