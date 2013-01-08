@@ -29,5 +29,13 @@ describe('properties', function() {
             var props = properties.parse(['name']);
             props.model.pluralCapitalized.should.equal('Names');
         });
+
+        it('should allow Array types', function() {
+            var props = properties.parse(['model', 'name:[String]']);
+            var nameProperty = props.properties[0];
+            
+            nameProperty.type.should.equal('[String]');
+            nameProperty.schemaType.should.equal('[String]');
+        });
     });
 });
