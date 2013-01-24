@@ -4,6 +4,12 @@ Bumm is an opinionated project generator for node.js
 Generated projects rely on [express](http://expressjs.com/) and [mongoose](http://mongoosejs.com/) without any persistence abstractions, 
 additional libraries or frameworks. Just plain express and mongoose!
 
+## Change Log
+* 0.1.3 Add `npm init` like prompt to specify generated package.json values by [thomas peklak](https://github.com/thomaspeklak)
+* 0.1.2 Minor bug fixes in views, basic support for array types, reorganizes public assets in vendor folder, remove 'x-powered-by' header
+* 0.1.1 Bootstrap update, mongoose update
+* 0.1.0 Initial version
+
 # Installing Bumm
 
 	npm install bumm -g
