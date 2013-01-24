@@ -74,7 +74,7 @@ Examples:
                              basic CRUD operations
   bumm view item             Generates item views
 
-  bumm scaffold item name:string:require:true
+  bumm scaffold item name:string:required:true
 
                              Generates item model, route and views with a single
                              property "name" that is required.
