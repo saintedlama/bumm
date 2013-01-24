@@ -1,9 +1,9 @@
 {
   "name": "bumm",
   "description": "Opinionated project generator for node.js relying on express and mongoose",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "bin": "bin/cli.js",
-  "repository": "git://github.com/saintedlama/bumm",
+  "repository": "git://github.com/the-diamond-dogs-group-oss/bumm",
   "author": "Christoph Walcher <christoph.walcher@gmail.com>",
   "license": "BSD",
   "keywords": [
