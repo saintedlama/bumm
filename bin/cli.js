@@ -7,10 +7,10 @@ var path = require('path'),
     properties = require('../lib/properties'),
     version = require('../package.json').version;
 
-var die = function (msg) {
+var die = function(msg) {
     console.error('\n', msg, '\n');
     console.info(usage);
-    
+
     process.exit(1);
 }
 
@@ -39,19 +39,19 @@ if (!commands[commandName]) {
 }
 
 try {
-var options = properties.parse(argv._);
+    var options = properties.parse(argv._);
 
-options.templateDir = path.join(__dirname, '..', 'templates');
+    options.templateDir = path.join(__dirname, '..', 'templates');
 
-if (process.env.BUMM_TEMPLATE_DIR) {
-    options.templateDir = process.env.BUMM_TEMPLATE_DIR;
-}
+    if (process.env.BUMM_TEMPLATE_DIR) {
+        options.templateDir = process.env.BUMM_TEMPLATE_DIR;
+    }
 
-if (argv.templateDir || argv.t) {
-    options.templateDir = argv.templateDir || argv.t;
-}
+    if (argv.templateDir || argv.t) {
+        options.templateDir = argv.templateDir || argv.t;
+    }
 
-commands[commandName](options);
+    commands[commandName](options);
 } catch (e) {
     die(e);
 }
