@@ -51,6 +51,15 @@ try {
         options.templateDir = argv.templateDir || argv.t;
     }
 
+    // copy switches from argv to options.switches
+    options.switches = {};
+    
+    for (var key in argv) {
+        if (key != '_' && key != '$0' && argv.hasOwnProperty(key)) {
+            options.switches[key] = argv[key];
+        }
+    }
+
     commands[commandName](options);
 } catch (e) {
     die(e);
