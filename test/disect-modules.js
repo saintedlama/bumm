@@ -15,7 +15,7 @@ describe('disectModules', function() {
     disectModules('test:3.4.5, foo ,bar :1.2.3').should.eql({test:'3.4.5', foo:'*', bar: '1.2.3'});
   });
   it('should empty versions with :', function() {
-'     disectModules('test:3.4.5, foo: ,bar :1.2.3').should.eql({test:'3.4.5', foo:'*', bar: '1.2.3'});
+    disectModules('test:3.4.5, foo: ,bar :1.2.3').should.eql({test:'3.4.5', foo:'*', bar: '1.2.3'});
   });
 });
 
