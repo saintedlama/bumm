@@ -1,3 +1,12 @@
-var env = process.env.NODE_ENV || 'development';
+var defaults = require('./defaults');
 
-module.exports = require('./' + env);
+var env = process.env.NODE_ENV || 'development';
+var overrides = require('./' + env);
+
+for (var key in overrides) {
+    if (overrides.hasOwnProperty(key)) {
+        defaults[key] = overrides[key];
+    }
+}
+
+module.exports = defaults; 
