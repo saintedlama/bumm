@@ -22,5 +22,8 @@
   "devDependencies": {
     "mocha": "1.4.x",
     "should": "1.0.x"
+  },
+  "scripts": {
+    "test": "mocha"
   }
 }
