@@ -2,9 +2,14 @@ var util = require('util');
 
 var errorTag = '<span class="error help-inline">%s</span>';
 
-module.exports = function (app) {
+var getMessage = function(error) {
+    // Get type if specified or a more general message
+    return error.type || error.message;
+};
+
+module.exports = function(app) {
     app.locals({
-        errorFor : function (model, property) {
+        errorFor : function(model, property) {
             var modelToValidate = this[model];
 
             if (modelToValidate && modelToValidate.errors) {
@@ -17,7 +22,7 @@ module.exports = function (app) {
                         return util.format(errorTag, message);
                     }
 
-                    return util.format(errorTag, modelToValidate.errors[property].message);
+                    return util.format(errorTag, getMessage(error));
                 }
             }
         },
