@@ -1,4 +1,5 @@
 extends ../layout
+include ../mixins/form-helpers
 
 block content
 
@@ -8,28 +9,28 @@ block content
     
 <% for(var i in properties) { -%>
       .control-group
-        label(for="<%= properties[i].name %>", class="control-label") <%= properties[i].nameCapitalized %>
+        mixin label("<%= properties[i].name %>", "<%= properties[i].nameCapitalized %>")        
         .controls
 <%    if(properties[i].type === 'String') { -%>
 <%      if(properties[i].name === 'password') { -%>
-          input.span6(type="password", id="<%= properties[i].name %>", name="<%= properties[i].name %>", value=<%=model.singular%>.<%=properties[i].name%>)
+          mixin password("<%= properties[i].name %>", <%=model.singular%>.<%=properties[i].name%>)
 <%      } else { -%>
-          input.span6(type="text", id="<%= properties[i].name %>", name="<%= properties[i].name %>", value=<%=model.singular%>.<%=properties[i].name%>)
+          mixin text("<%= properties[i].name %>", <%=model.singular%>.<%=properties[i].name%>)
 <%      } -%>
 <%    } else if(properties[i].type === 'Textarea') { -%>
-          textarea.span6(id="<%= properties[i].name %>", name="<%= properties[i].name %>", rows="5")= <%=model.singular%>.<%=properties[i].name%>
+          mixin textarea("<%= properties[i].name %>", <%=model.singular%>.<%=properties[i].name%>)
 <%    } else if(properties[i].type === 'Number' || properties[i].type === 'int') { -%>
-          input.span2(type="number", id="<%= properties[i].name %>", name="<%= properties[i].name %>", value=<%=model.singular%>.<%=properties[i].name%>)
+          mixin number("<%= properties[i].name %>", <%=model.singular%>.<%=properties[i].name%>)
 <%    } else if(properties[i].type === 'Boolean') { -%>
-          input.span1(type="checkbox", id="<%= properties[i].name %>", name="<%= properties[i].name %>", checked=<%=model.singular%>.<%=properties[i].name%>)
+          mixin boolean("<%= properties[i].name %>", <%=model.singular%>.<%=properties[i].name%>)
 <%    } else if(properties[i].type === 'Date') { -%>
-          input.span2(type="date", id="<%= properties[i].name %>", name="<%= properties[i].name %>", value=<%=model.singular%>.<%=properties[i].name%>)
+          mixin date("<%= properties[i].name %>", <%=model.singular%>.<%=properties[i].name%>)
 <%    } else if(properties[i].type === 'Datetime') { -%>
-          input.span2(type="datetime", id="<%= properties[i].name %>", name="<%= properties[i].name %>", value=<%=model.singular%>.<%=properties[i].name%>)
+          mixin datetime("<%= properties[i].name %>", <%=model.singular%>.<%=properties[i].name%>)
 <%    } else { -%>
           | <%= properties[i].type %>
 <%    } -%>
-          !{errorFor('<%=model.singular%>', '<%=properties[i].name%>')}
+          mixin errorMessage('<%=model.singular%>', '<%=properties[i].name%>')
 <% } -%>
 
     .form-actions

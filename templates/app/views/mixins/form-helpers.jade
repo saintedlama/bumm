@@ -1,0 +1,27 @@
+mixin label(field, title)
+  label(for=field, class="control-label")= title
+
+mixin password(field, value)
+  input.span6(type="password", id=field, name=field, value=value)
+
+mixin text(field, value)
+  input.span6(type="text", id=field, name=field, value=value)
+
+mixin textarea(field, value)
+  textarea.span6(id=field, name=field, rows="5")= value
+
+mixin number(field, value)
+  input.span2(type="number", id=field, name=field, value=value)
+
+mixin boolean(field, value)
+  input.span1(type="checkbox", id=field, name=field, checked=value)
+
+mixin date(field, value)
+  input.span2(type="date", id=field, name=field, value=value)
+
+mixin datetime(field, value)
+  input.span2(type="datetime", id=field, name=field, value=value)
+
+    
+mixin errorMessage(model, field)
+  !{errorFor(model, field)}
