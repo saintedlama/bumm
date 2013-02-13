@@ -4,6 +4,12 @@ var path = require('path'),
     mongoose = require('mongoose'),
     config = require('./config');
 
+<% if(mongoSessionStore == "yes") { -%>
+var MongoStore = require('connect-mongo')(express);
+<% } -%>
+
+var mongooseConnection = mongoose.connect(config.db.url);
+
 var app = express();
 
 // Express settings
@@ -20,8 +26,24 @@ app.configure(function(){
     app.use(express.bodyParser());
     app.use(express.methodOverride());
 
-	app.use(express.cookieParser('your secret here'));
+    app.use(express.cookieParser(config.secret));
+
+<% if(mongoSessionStore == "yes") { -%>
+    app.use(express.session({
+        secret: config.sessionSecret,
+        store: new MongoStore({
+            collection: "sessions",
+            mongoose_connection: mongooseConnection.connections[0]
+        }),
+        cookie: {
+            path: '/',
+            httpOnly: true,
+            maxAge: 1000 * 60 * 60 * 24 * 30
+        }
+    }));
+<% } else { -%>
     app.use(express.session());
+<% } -%>
 
     app.use(app.router);
 
@@ -35,8 +57,6 @@ app.configure('development', function(){
 app.configure('production', function(){
     app.use(express.errorHandler());
 });
-
-mongoose.connect(config.db.url);
 
 require('./helpers')(app);
 require('./routes')(app);
