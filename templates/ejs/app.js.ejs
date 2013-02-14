@@ -4,8 +4,11 @@ var path = require('path'),
     mongoose = require('mongoose'),
     config = require('./config');
 
-<% if(mongoSessionStore == "yes") { -%>
+<% if(mongoSessionStore[0] == "y") { -%>
 var MongoStore = require('connect-mongo')(express);
+<% } -%>
+<% if(i18n[0] == "y") { -%>
+var I18n = require('i18n-2');
 <% } -%>
 
 var mongooseConnection = mongoose.connect(config.db.url);
@@ -18,6 +21,11 @@ app.disable('x-powered-by');
 
 // Configuration
 app.configure(function(){
+<% if(i18n[0] == "y") { -%>
+    I18n.expressBind(app, {
+        locals: ['en', 'es', 'fr', 'de']
+    });
+<% } -%>
     app.set('views', __dirname + '/views');
     app.set('view engine', 'jade');
     app.set('view options', { layout: false });
@@ -44,7 +52,6 @@ app.configure(function(){
 <% } else { -%>
     app.use(express.session());
 <% } -%>
-
     app.use(app.router);
 
     app.use(express.static(path.join(__dirname, 'public')));
