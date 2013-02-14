@@ -1,5 +1,5 @@
 module.exports = {
-    port : 3001,
+    port : process.env.PORT || 3001,
     secret : "Your secret here"
 };
 
