@@ -11,4 +11,4 @@ var <%= model.singularCapitalized %> = new Schema({
 <% } -%>
 });
 
-module.exports = mongoose.model('<%= model.pluralCapitalized %>', <%= model.singularCapitalized %>);
+module.exports = mongoose.model('<%= model.singularCapitalized %>', <%= model.singularCapitalized %>);
