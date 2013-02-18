@@ -36,7 +36,12 @@ app.configure('production', function(){
     app.use(express.errorHandler());
 });
 
-mongoose.connect(config.db.url);
+mongoose.connect(config.db.url, function(err) {
+    if (err) {
+        console.log('Could not connect to database', config.db.url, ' due to error', err);
+        process.exit(1);
+    }
+});
 
 require('./helpers')(app);
 require('./routes')(app);
