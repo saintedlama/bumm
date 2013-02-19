@@ -15,12 +15,10 @@ var mongooseConnection = mongoose.connect(config.db.url, function(err) {
     }
 });
 
-
 var app = express();
 
 // Express settings
 app.disable('x-powered-by');
-
 
 // Configuration
 app.configure(function(){
