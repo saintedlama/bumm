@@ -2,11 +2,10 @@ var express = require('express'),
     <%=model.singularCapitalized%> = require('../models/<%=model.singular%>'),
     mapper = require('../lib/model-mapper');
 
-
 module.exports = function(app) {
 
     app.param('<%=model.singular%>Id', function(req, res, next, id) {
-        <%=model.singularCapitalized%>.findOne({ _id : id }, function(err, <%=model.singular%>) {
+        <%=model.singularCapitalized%>.findById(id, function(err, <%=model.singular%>) {
             if (err) {
                 next(err);
             } else {
@@ -45,14 +44,11 @@ module.exports = function(app) {
     });
 
     app.post('/<%=model.plural%>/:<%=model.singular%>Id/edit', function(req, res) {
-        var <%=model.singular%> = res.locals.<%=model.singular%>;
-        mapper.map(req.body).to(<%=model.singular%>);
+        mapper.map(req.body).to(res.locals.<%=model.singular%>);
 
-        <%=model.singular%>.save(function(err) {
+        res.locals.<%=model.singular%>.save(function(err) {
             if (err) {
-                res.render('<%=model.singular%>/edit', {
-                    <%=model.singular%> : <%=model.singular%>
-                });
+                res.render('<%=model.singular%>/edit');
             } else {
                 res.redirect('/<%=model.plural%>');
             }
