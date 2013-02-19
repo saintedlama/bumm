@@ -1,0 +1,67 @@
+var express = require('express'),
+    <%=model.singularCapitalized%> = require('../models/<%=model.singular%>'),
+    mapper = require('../lib/model-mapper');
+
+
+module.exports = function(app) {
+
+    app.param('<%=model.singular%>Id', function(req, res, next, id) {
+        <%=model.singularCapitalized%>.findOne({ _id : id }, function(err, <%=model.singular%>) {
+            if (err) {
+                return next(err);
+            } 
+            
+            if (!<%=model.singular%>) {
+                return res.send(404);
+            }
+
+            res.locals.<%=model.singular%> = <%=model.singular%>;
+            next();
+        });
+    });
+    
+    app.get('/<%=model.plural%>', function(req, res) {
+        <%=model.singularCapitalized%>.find({}, function(err, <%=model.plural%>) {
+            res.json(<%=model.plural%>);
+        });
+    });
+
+    app.post('/<%=model.plural%>', function(req, res) { 
+        var <%=model.singular%> = new <%=model.singularCapitalized%>(req.body);
+
+        <%=model.singular%>.save(function(err) {
+            if (err) {
+                res.json(400, err);
+            } else {
+                res.send(204);
+            }
+        });
+    });
+
+    app.get('/<%=model.plural%>/:<%=model.singular%>Id', function(req, res) {
+        res.json(res.locals.<%=model.singular%>);
+    });
+
+    app.put('/<%=model.plural%>/:<%=model.singular%>Id', function(req, res) {
+        var <%=model.singular%> = res.locals.<%=model.singular%>;
+        mapper.map(req.body).to(<%=model.singular%>);
+
+        <%=model.singular%>.save(function(err) {
+            if (err) {
+                res.json(400, err);
+            } else {
+                res.send(204);
+            }
+        });
+    });
+
+    app.delete('/<%=model.plural%>/:<%=model.singular%>Id/delete', function(req, res) {
+        <%=model.singularCapitalized%>.remove({ _id : req.params.<%=model.singular%>Id }, function(err) {
+            if (err) {
+                res.json(400, err);
+            } else {
+                res.send(204);
+            }
+        });
+    });
+}

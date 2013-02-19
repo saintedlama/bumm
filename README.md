@@ -49,6 +49,13 @@ Types are case insensitive.
 
 Now start `node app.js` and navigate your browser to `http://localhost:3000/tests`
 
+### Scaffolding restful routes
+
+You can create a JSON REST endpoint by scaffolding a model and its corresponding routes. The arguments are the same as above, but instead of _scaffold_ use _scafffold:rest_ like this
+
+	bumm scaffold:rest post title:string:required:true description
+
+
 # Usage
 
 ```
