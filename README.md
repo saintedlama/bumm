@@ -1,4 +1,4 @@
-![Logo](https://raw.github.com/saintedlama/bumm/master/images/logo.png)
+![Logo](https://raw.github.com/saintedlama/bumm/master/assets/logo.png)
 
 # Bumm
 Bumm is an opinionated project generator for node.js
