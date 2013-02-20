@@ -1,9 +1,9 @@
-extends ../layout
-include ../mixins/form-helpers
+extends <%=model.relativeRootPath%>/layout
+include <%=model.relativeRootPath%>/mixins/form-helpers
 
 block content
 
-  form#<%=model.singular%>-form.form-horizontal(action="/<%=model.plural%>/create", method="POST")
+  form#<%=model.singular%>-form.form-horizontal(action="<%=model.route%>/create", method="POST")
     fieldset
       legend Create a new <%=model.singularCapitalized%>
     
@@ -34,6 +34,6 @@ block content
 <% } -%>
 
     .form-actions
-      a.btn.btn-warning(href="/<%=model.plural%>") Back
+      a.btn.btn-warning(href="<%=model.route%>") Back
       | 
       input.btn.btn-primary(type="submit", value="Create")

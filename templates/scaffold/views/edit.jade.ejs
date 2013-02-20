@@ -1,8 +1,8 @@
-extends ../layout
-include ../mixins/form-helpers
+extends <%=model.relativeRootPath%>/layout
+include <%=model.relativeRootPath%>/mixins/form-helpers
 
 block content
-  form#<%=model.singular%>-form.form-horizontal(action="/<%=model.plural%>/" + <%=model.singular%>._id + "/edit", method="POST")
+  form#<%=model.singular%>-form.form-horizontal(action="<%=model.route%>/" + <%=model.singular%>._id + "/edit", method="POST")
     fieldset
       legend Edit <%=model.singularCapitalized%>
 
@@ -33,6 +33,6 @@ block content
 <% } -%>
 
     .form-actions
-      a.btn.btn-warning(href="/<%=model.plural%>") Back
+      a.btn.btn-warning(href="<%=model.route%>") Back
       | 
       input.btn.btn-primary(type="submit", value="Save")
