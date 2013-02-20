@@ -68,3 +68,9 @@ module.exports = function(app) {
         });
     });
 }
+
+// Used to build the index page. Can be safely removed!
+module.exports.meta = {
+    name : '<%=model.singularCapitalized%>',
+    route : '<%=model.route%>'
+}
