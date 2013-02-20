@@ -20,8 +20,8 @@
     "prompt": "0.2.x"
   },
   "devDependencies": {
-    "mocha": "1.4.x",
-    "should": "1.0.x"
+    "mocha": "1.8.x",
+    "should": "1.2.x"
   },
   "scripts": {
     "test": "mocha"
