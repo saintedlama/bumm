@@ -21,11 +21,6 @@ app.disable('x-powered-by');
 
 // Configuration
 app.configure(function(){
-<% if(i18n[0] == "y") { -%>
-    I18n.expressBind(app, {
-        locals: ['en', 'es', 'fr', 'de']
-    });
-<% } -%>
     app.set('views', __dirname + '/views');
     app.set('view engine', 'jade');
     app.set('view options', { layout: false });
