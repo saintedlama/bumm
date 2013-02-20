@@ -65,6 +65,14 @@ app.configure('production', function(){
 require('./helpers')(app);
 require('./routes')(app);
 
-http.createServer(app).listen(config.port, config.address, function() {
-    console.log("Express server listening on %s:%d in %s mode", config.address, config.port, app.settings.env);
-});
+var invokedAsMain = require.main === module;
+
+// Start server if not invoked by require('./app')
+if (invokedAsMain) {
+    http.createServer(app).listen(config.port, config.address, function() {
+        console.log("Express server listening on %s:%d in %s mode", config.address, config.port, app.settings.env);
+    });    
+} else {
+    // Export app if invoked by require('./app')
+    module.exports = app;
+}
