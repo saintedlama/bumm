@@ -196,6 +196,9 @@ this folder. Index.js requires all files that are in or routes or a sub director
 you require a route to be defined before another route you can always require that route in `index.js` or load routes manually
 in a defined order.
 
+index.js also defines a route to `/` to render a nice getting started page. This functionality can be removed without harming
+the system!
+
 ### views
 All generated view will be generated under views. After creating an app with Bumm, you'll find an index.jade that is a welcome
 file to display some help text or defined routes, a layout.jade file that defines the layout used by all generated views and
