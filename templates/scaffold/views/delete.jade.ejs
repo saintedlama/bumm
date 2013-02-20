@@ -1,4 +1,4 @@
-extends ../layout
+extends <%=model.relativeRootPath%>/layout
 
 block content
   h2.display-data Delete <%= model.singularCapitalized %>?
@@ -13,8 +13,8 @@ block content
           td= display(<%=model.singular%>.<%=properties[i].name %>)
 <% } %>
 
-  form#<%=model.singular%>-form.form-horizontal(action="/<%=model.plural%>/" + <%=model.singular%>._id + "/delete", method="POST")
+  form#<%=model.singular%>-form.form-horizontal(action="<%=model.route%>/" + <%=model.singular%>._id + "/delete", method="POST")
     .form-actions
-      a.btn.btn-warning(href="/<%=model.plural%>") Back
+      a.btn.btn-warning(href="<%=model.route%>") Back
       | 
       input.btn.btn-danger(type="submit", value="Delete")

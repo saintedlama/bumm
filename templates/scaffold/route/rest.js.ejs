@@ -1,15 +1,13 @@
-var express = require('express'),
-    <%=model.singularCapitalized%> = require('../models/<%=model.singular%>'),
-    mapper = require('../lib/model-mapper');
-
+var <%=model.singularCapitalized%> = require('<%=model.relativeRootPath%>/models/<%=model.path%>'),
+    mapper = require('<%=model.relativeRootPath%>/lib/model-mapper');
 
 module.exports = function(app) {
 
     app.param('<%=model.singular%>Id', function(req, res, next, id) {
-        <%=model.singularCapitalized%>.findOne({ _id : id }, function(err, <%=model.singular%>) {
+        <%=model.singularCapitalized%>.findById(id, function(err, <%=model.singular%>) {
             if (err) {
                 return next(err);
-            } 
+            }
             
             if (!<%=model.singular%>) {
                 return res.send(404);
@@ -20,13 +18,13 @@ module.exports = function(app) {
         });
     });
     
-    app.get('/<%=model.plural%>', function(req, res) {
+    app.get('<%=model.route%>', function(req, res) {
         <%=model.singularCapitalized%>.find({}, function(err, <%=model.plural%>) {
             res.json(<%=model.plural%>);
         });
     });
 
-    app.post('/<%=model.plural%>', function(req, res) { 
+    app.post('<%=model.route%>', function(req, res) { 
         var <%=model.singular%> = new <%=model.singularCapitalized%>(req.body);
 
         <%=model.singular%>.save(function(err) {
@@ -38,11 +36,11 @@ module.exports = function(app) {
         });
     });
 
-    app.get('/<%=model.plural%>/:<%=model.singular%>Id', function(req, res) {
+    app.get('<%=model.route%>/:<%=model.singular%>Id', function(req, res) {
         res.json(res.locals.<%=model.singular%>);
     });
 
-    app.put('/<%=model.plural%>/:<%=model.singular%>Id', function(req, res) {
+    app.put('<%=model.route%>/:<%=model.singular%>Id', function(req, res) {
         var <%=model.singular%> = res.locals.<%=model.singular%>;
         mapper.map(req.body).to(<%=model.singular%>);
 
@@ -55,7 +53,7 @@ module.exports = function(app) {
         });
     });
 
-    app.delete('/<%=model.plural%>/:<%=model.singular%>Id/delete', function(req, res) {
+    app.delete('<%=model.route%>/:<%=model.singular%>Id/delete', function(req, res) {
         <%=model.singularCapitalized%>.remove({ _id : req.params.<%=model.singular%>Id }, function(err) {
             if (err) {
                 res.json(400, err);

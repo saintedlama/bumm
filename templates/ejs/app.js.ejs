@@ -2,22 +2,22 @@ var path = require('path'),
     express = require('express'),
     http = require('http'),
     mongoose = require('mongoose'),
-    config = require('./config');
+    config = require('./config')<% if(mongoSessionStore) { %>,
+    MongoStore = require('connect-mongo')(express)<% } %><% if(i18n) { %>,
+    i18n = require('i18n-2')<% } -%>;
 
-<% if(mongoSessionStore[0] == "y") { -%>
-var MongoStore = require('connect-mongo')(express);
-<% } -%>
-<% if(i18n[0] == "y") { -%>
-var I18n = require('i18n-2');
-<% } -%>
 
-var mongooseConnection = mongoose.connect(config.db.url);
+var mongooseConnection = mongoose.connect(config.db.url, function(err) {
+    if (err) {
+        console.log('Could not connect to database', config.db.url, ' due to error', err);
+        process.exit(1);
+    }
+});
 
 var app = express();
 
 // Express settings
 app.disable('x-powered-by');
-
 
 // Configuration
 app.configure(function(){
@@ -36,7 +36,7 @@ app.configure(function(){
 
     app.use(express.cookieParser(config.secret));
 
-<% if(mongoSessionStore == "yes") { -%>
+<% if(mongoSessionStore) { -%>
     app.use(express.session({
         secret: config.sessionSecret,
         store: new MongoStore({
@@ -52,8 +52,12 @@ app.configure(function(){
 <% } else { -%>
     app.use(express.session());
 <% } -%>
-    app.use(app.router);
 
+<% if(i18n) { -%>
+    i18n.expressBind(app, { locals: ['en', 'es', 'fr', 'de'] });
+
+<% } -%>
+    app.use(app.router);
     app.use(express.static(path.join(__dirname, 'public')));
 });
 
@@ -68,6 +72,14 @@ app.configure('production', function(){
 require('./helpers')(app);
 require('./routes')(app);
 
-http.createServer(app).listen(config.port, config.address, function() {
-    console.log("Express server listening on %s:%d in %s mode", config.address, config.port, app.settings.env);
-});
+var invokedAsMain = require.main === module;
+
+// Start server if not invoked by require('./app')
+if (invokedAsMain) {
+    http.createServer(app).listen(config.port, config.address, function() {
+        console.log("Express server listening on %s:%d in %s mode", config.address, config.port, app.settings.env);
+    });    
+} else {
+    // Export app if invoked by require('./app')
+    module.exports = app;
+}

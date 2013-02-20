@@ -1,0 +1,36 @@
+extends layout
+
+block content
+  h2.display-data Routes
+  - if (!mainRoutes.length)
+    p
+      | Well done young Padawan! You've created your first app with bumm!
+      br
+      br
+      | If you don't see any routes here switch
+      | to the command line again and scaffold some model, routes and views
+      pre
+        > bumm scaffold item name:string
+      | This command creates a model "item" with one property "name" of type string, the route file is placed under "routes/item.js",
+      | and the views can be found under "views/item".
+      br
+      br
+      | Or create some rest resource using command
+      pre
+        > bumm resource item name:string
+      | That creates a model "item" with one property "name" of type string, the route file is placed under "routes/item.js",
+      | and since this rest resource is intended to be used as API method no views are generated.
+      br
+      br
+      | Or scaffold some CRUD stuff under an "admin" route
+      pre
+        > bumm scaffold admin/item name:string
+      | Which creates a model "item" with one property "name" of type string, the route file is placed under "routes/admin/item.js",
+      | and the views can be found under "views/admin/item". You can access this route via "/admin/items"...
+
+    h3 Have fun!    
+
+  ul
+    each route in mainRoutes
+      li
+        a(href="#{route.route}")= route.name

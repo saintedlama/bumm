@@ -1,8 +1,8 @@
-extends ../layout
+extends <%=model.relativeRootPath%>/layout
 
 block content
   h2.display-data All <%= model.pluralCapitalized %>
-    a.btn.btn-primary.pull-right(href="/<%=model.plural%>/create") Create a new <%= model.singularCapitalized %>
+    a.btn.btn-primary.pull-right(href="<%=model.route%>/create") Create a new <%= model.singularCapitalized %>
 
   table.table.table-bordered.table-striped(style="width:100%")
     tr
@@ -17,11 +17,11 @@ block content
         td= display(<%=model.singular%>.<%=properties[i].name %>)
 <% } %>
         td
-          a(href="/<%=model.plural%>/" + <%= model.singular %>._id + "/detail", title="Detail")
+          a(href="<%=model.route%>/" + <%= model.singular %>._id + "/detail", title="Detail")
             i.icon-zoom-in
           | 
-          a(href="/<%=model.plural%>/" + <%= model.singular %>._id + "/edit", title="Edit")
+          a(href="<%=model.route%>/" + <%= model.singular %>._id + "/edit", title="Edit")
             i.icon-edit
           | 
-          a(href="/<%=model.plural%>/" + <%= model.singular %>._id + "/delete", title="Delete")
+          a(href="<%=model.route%>/" + <%= model.singular %>._id + "/delete", title="Delete")
             i.icon-remove
