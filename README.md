@@ -1,10 +1,12 @@
 ![Logo](https://raw.github.com/saintedlama/bumm/master/assets/logo.png)
 
-# Bumm
 Bumm is an opinionated project generator for node.js
 
 Generated projects rely on [express](http://expressjs.com/) and [mongoose](http://mongoosejs.com/) without any persistence abstractions, 
 additional libraries or frameworks. Just plain express and mongoose!
+
+[![Build Status](https://travis-ci.org/saintedlama/bumm.png?branch=master)](https://travis-ci.org/saintedlama/bumm)
+[![Dependency Status](https://gemnasium.com/saintedlama/bumm.png)](https://gemnasium.com/saintedlama/bumm)
 
 # Installing Bumm
 
