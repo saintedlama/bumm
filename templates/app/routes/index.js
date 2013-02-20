@@ -15,7 +15,7 @@ var requireRoutes = function(dir, app) {
             try {
                 require(absolutePath)(app);
             } catch (e) {
-                console.log('Could not require route "', absolutePath, '"');
+                console.log('Could not require route "' + absolutePath + '" due to exception', e);
             }
         } else if (stat.isDirectory()) {
             // Scan the directory recursive
@@ -26,6 +26,7 @@ var requireRoutes = function(dir, app) {
 
 var routes = function(app) {
     requireRoutes(__dirname, app);
+    
 }
 
 module.exports = routes;
