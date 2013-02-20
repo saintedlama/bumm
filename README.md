@@ -4,12 +4,6 @@ Bumm is an opinionated project generator for node.js
 Generated projects rely on [express](http://expressjs.com/) and [mongoose](http://mongoosejs.com/) without any persistence abstractions, 
 additional libraries or frameworks. Just plain express and mongoose!
 
-## Change Log
-* 0.1.3 Add `npm init` like prompt to specify generated package.json values by [thomas peklak](https://github.com/thomaspeklak)
-* 0.1.2 Minor bug fixes in views, basic support for array types, reorganizes public assets in vendor folder, remove 'x-powered-by' header
-* 0.1.1 Bootstrap update, mongoose update
-* 0.1.0 Initial version
-
 # Installing Bumm
 
 	npm install bumm -g
@@ -203,3 +197,39 @@ the system!
 All generated view will be generated under views. After creating an app with Bumm, you'll find an index.jade that is a welcome
 file to display some help text or defined routes, a layout.jade file that defines the layout used by all generated views and
 a mixin folder that defines mixins used in Bumm generated views.
+
+
+## Change Log
+### 0.1.5 
+
+* Add option to use mongodb session store
+* Support directories when scaffolding models, views and routes
+* Render a nice start page
+* Support rest resources for api services
+
+### 0.1.4
+ 
+* Express and Mongoose updates
+* Fix startup scripts
+* Provide better error messages
+* Use mixins to render forms
+
+### 0.1.3 
+
+* Add `npm init` like prompt to specify generated package.json values by [thomas peklak](https://github.com/thomaspeklak)
+
+### 0.1.2 
+
+* Minor bug fixes in views
+* Basic support for array types
+* Reorganizes public assets in vendor folder
+* Disable 'x-powered-by' header
+
+### 0.1.1 
+
+* Bootstrap update
+* Mongoose update
+
+### 0.1.0
+ 
+* Initial version
