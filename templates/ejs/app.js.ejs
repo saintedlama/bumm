@@ -2,11 +2,10 @@ var path = require('path'),
     express = require('express'),
     http = require('http'),
     mongoose = require('mongoose'),
-    config = require('./config');
+    config = require('./config')<% if(mongoSessionStore) { %>,
+    MongoStore = require('connect-mongo')(express)<% } %><% if(i18n) { %>,
+    i18n = require('i18n-2')<% } -%>;
 
-<% if(mongoSessionStore == "yes") { -%>
-var MongoStore = require('connect-mongo')(express);
-<% } -%>
 
 var mongooseConnection = mongoose.connect(config.db.url, function(err) {
     if (err) {
@@ -32,7 +31,7 @@ app.configure(function(){
 
     app.use(express.cookieParser(config.secret));
 
-<% if(mongoSessionStore == "yes") { -%>
+<% if(mongoSessionStore) { -%>
     app.use(express.session({
         secret: config.sessionSecret,
         store: new MongoStore({
@@ -49,8 +48,11 @@ app.configure(function(){
     app.use(express.session());
 <% } -%>
 
-    app.use(app.router);
+<% if(i18n) { -%>
+    i18n.expressBind(app, { locals: ['en', 'es', 'fr', 'de'] });
 
+<% } -%>
+    app.use(app.router);
     app.use(express.static(path.join(__dirname, 'public')));
 });
 
