@@ -70,12 +70,21 @@ Options:
 
 Commands:
   app <name>                 Create a new application
-  scaffold <name> [Attrib]   Create a new route, model and views for <name>
-  view <name> [Attrib]       Creates views for a <name>
-  route <name> [Attrib]      Creates a route for a <name>
-  model <name> [Attrib]      Creates a new mongoose model for a <name>
+  scaffold <name> [attrib]   Create a new route, model and views for <name>
+  resource <name> [attrib]   Creates a model and route for resource <name>
+  view <name> [attrib]       Creates views for a <name>
+  route <name> [attrib]      Creates a route for a <name>
+  model <name> [attrib]      Creates a new mongoose model for a <name>
 
-Attrib:
+name:
+  Name should be provided as singular, so use `item` instead of `items`. For
+  `scaffold`, `view`, `route`, `resource`, `model` commands name
+  accepts a path prefix. For example `admin/item` will create model, routes and
+  views in an admin directory. Routes will then point to `/admin/items`. This
+  option can be useful if you plan to add some authentication based on routes
+  later on.
+
+attrib:
   Attributes are used to describe properties of models used in routes, views
   and of course models using the schema:
 
@@ -92,3 +101,102 @@ Examples:
                              Generates item model, route and views with a single
                              property "name" that is required.
 ```
+
+# What bumm creates
+
+After executing `bumm app someappname` you'll find the following structure in your file system.
+
+    |   app.js
+    |   helpers.js
+    |   package.json
+    |   README.md
+    |
+    +---config
+    |       defaults.js
+    |       development.js
+    |       index.js
+    |       production.js
+    |
+    +---lib
+    |       model-mapper.js
+    |
+    +---public
+    |   +---css
+    |   |       custom.css
+    |   |
+    |   \---vendor
+    |       +---bootstrap
+    |       |   +---css
+    |       |   |       bootstrap-responsive.css
+    |       |   |       bootstrap-responsive.min.css
+    |       |   |       bootstrap.css
+    |       |   |       bootstrap.min.css
+    |       |   |
+    |       |   +---img
+    |       |   |       glyphicons-halflings-white.png
+    |       |   |       glyphicons-halflings.png
+    |       |   |
+    |       |   \---js
+    |       |           bootstrap.js
+    |       |           bootstrap.min.js
+    |       |
+    |       \---jquery
+    |           \---js
+    |                   jquery.min.js
+    |
+    +---routes
+    |       index.js
+    |
+    \---views
+        |   index.jade
+        |   layout.jade
+        |
+        \---mixins
+                form-helpers.jade
+
+## Application structure explained
+
+### app.js
+Creates and initializes an express app with a mongoDb connection configured. Routes will be setup by requiring the routes
+directory directly. See routes below.
+
+### helpers.js 
+Defines some jade/html helpers for displaying error messages and displaying values.
+
+### package.json 
+Initial package with value entered in the prompt dialog
+
+### README.md 
+Empty readme to silence npm
+
+### config
+The config directory is required by `app.js` to load the configuration files. Bumm assumes that you have three config files
+
+* __defaults__ Defines defaults that are used in development and production mode
+* __development__ Defines configuration values used in development mode only
+* __production__ Defines configuration values used in production mode only
+
+Bumm loads defaults first, then loads the configuration file `development` or `production` depending on the current `NODE_ENV`
+environment variable and overrides all default values with the development or production values.
+
+### lib
+Bumm ships with a single library file that is responsible to map values provided in request body to a mongoose
+model.
+
+### public
+The public folder contains a quite up to date version of [twitter bootstrap](http://twitter.github.com/bootstrap/) under `vendor/boostrap`,
+an up to date version of [jQuery](http://jquery.com/) under `vendor/jquery` and a `custom.css` file under css.
+
+Bumm organizes all shipped 3rd party css/javascript libraries are placed in the `vendor` directory and follows a `js`, `css`, `img` schema
+for vendor libraries. You are free to place your libraries wherever you want :)
+
+### routes
+All generated routes will be generated under routes. After creating an app with Bumm, you'll find a single `index.js` file in
+this folder. Index.js requires all files that are in or routes or a sub directory of routes to initialize the route. In case
+you require a route to be defined before another route you can always require that route in `index.js` or load routes manually
+in a defined order.
+
+### views
+All generated view will be generated under views. After creating an app with Bumm, you'll find an index.jade that is a welcome
+file to display some help text or defined routes, a layout.jade file that defines the layout used by all generated views and
+a mixin folder that defines mixins used in Bumm generated views.
