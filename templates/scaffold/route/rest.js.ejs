@@ -1,15 +1,13 @@
-var express = require('express'),
-    <%=model.singularCapitalized%> = require('../models/<%=model.singular%>'),
+var <%=model.singularCapitalized%> = require('../models/<%=model.singular%>'),
     mapper = require('../lib/model-mapper');
-
 
 module.exports = function(app) {
 
     app.param('<%=model.singular%>Id', function(req, res, next, id) {
-        <%=model.singularCapitalized%>.findOne({ _id : id }, function(err, <%=model.singular%>) {
+        <%=model.singularCapitalized%>.findById(id, function(err, <%=model.singular%>) {
             if (err) {
                 return next(err);
-            } 
+            }
             
             if (!<%=model.singular%>) {
                 return res.send(404);
