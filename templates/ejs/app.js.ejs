@@ -49,7 +49,7 @@ app.configure(function(){
 <% } -%>
 
 <% if(i18n) { -%>
-    i18n.expressBind(app, { locals: ['en', 'es', 'fr', 'de'] });
+    i18n.expressBind(app, { locales: ['en', 'es', 'fr', 'de'] });
 
 <% } -%>
     app.use(app.router);
