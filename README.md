@@ -86,7 +86,7 @@ attrib:
   Attributes are used to describe properties of models used in routes, views
   and of course models using the schema:
 
-  [name]:[type]:[validator]:[validatorValue]:[validator]:[validatorValue]...
+  name:type:validator:validatorValue:validator:validatorValue...
 
 Examples:
   bumm app todo              Generates an express app skeleton
