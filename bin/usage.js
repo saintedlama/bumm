@@ -1,4 +1,4 @@
-usage = [
+module.exports = [
     'Project generator for node.js using express and mongoose'
     , ''
     , 'Usage:'
@@ -47,4 +47,3 @@ usage = [
     , ''
 ].join('\n');
 
-module.exports = usage;
