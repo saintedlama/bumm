@@ -26,6 +26,20 @@ module.exports = function(app) {
             }
 
             return value;
+        },
+        
+       dateAsValue : function(date) {
+            // check if this is a date 
+            if(util.isDate(date)){
+                // if so we can format it to RFC3339 specification, 'yyyy-mm-dd'
+                var day = date.getDate();
+                var month = date.getMonth() + 1; //Months are zero based
+                var year = date.getFullYear();
+                return year + '-' + (month < 10 ? '0'+month: month) + '-' + day; 
+            }
+            // otherwise add some logging to inform dev
+            console.log('Non Date object passed as a value for the dateAsValue function in helper')
+            return date;
         }
     });
 };
