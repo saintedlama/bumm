@@ -17,7 +17,7 @@ mixin boolean(field, value)
   input.span1(type="checkbox", id=field, name=field, checked=value)
 
 mixin date(field, value)
-  input.span2(type="date", id=field, name=field, value=value)
+  input.span2(type="date", id=field, name=field, value=dateAsValue(value))
 
 mixin datetime(field, value)
   input.span2(type="datetime", id=field, name=field, value=value)
