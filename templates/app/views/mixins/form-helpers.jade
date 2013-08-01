@@ -22,6 +22,5 @@ mixin date(field, value)
 mixin datetime(field, value)
   input.span2(type="datetime", id=field, name=field, value=value)
 
-    
 mixin errorMessage(model, field)
   !{errorFor(model, field)}
