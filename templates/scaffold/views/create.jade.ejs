@@ -30,7 +30,7 @@ block content
 <%    } else { -%>
           | <%= properties[i].type %>
 <%    } -%>
-          mixin errorMessage('<%=model.singular%>', '<%=properties[i].name%>')
+          mixin errorMessage(<%=model.singular%>, '<%=properties[i].name%>')
 <% } -%>
 
     .form-actions
