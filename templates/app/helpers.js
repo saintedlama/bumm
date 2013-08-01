@@ -37,8 +37,7 @@ module.exports = function(app) {
                 var year = date.getFullYear();
                 return year + '-' + (month < 10 ? '0'+month: month) + '-' + day; 
             }
-            // otherwise add some logging to inform dev
-            console.log('Non Date object passed as a value for the dateAsValue function in helper')
+
             return date;
         }
     });
