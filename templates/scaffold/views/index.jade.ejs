@@ -4,12 +4,12 @@ block content
   h2.display-data All <%= model.pluralCapitalized %>
     a.btn.btn-primary.pull-right(href="<%=model.route%>/create") Create a new <%= model.singularCapitalized %>
 
-  table.table.table-bordered.table-striped(style="width:100%")
+  table.table.table-bordered.table-striped
     tr
 <% for(var i in properties) { -%>
         th <%=properties[i].nameCapitalized %>
 <% } -%>
-        th.last
+        th
 
     each <%= model.singular %> in <%= model.plural %>
       tr
@@ -18,10 +18,10 @@ block content
 <% } %>
         td
           a(href="<%=model.route%>/" + <%= model.singular %>._id + "/detail", title="Detail")
-            i.icon-zoom-in
+            i.glyphicon.glyphicon-search
           | 
           a(href="<%=model.route%>/" + <%= model.singular %>._id + "/edit", title="Edit")
-            i.icon-edit
+            i.glyphicon.glyphicon-pencil
           | 
           a(href="<%=model.route%>/" + <%= model.singular %>._id + "/delete", title="Delete")
-            i.icon-remove
+            i.glyphicon.glyphicon-ban-circle
