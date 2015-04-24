@@ -45,7 +45,7 @@ the types 'DateTime' and 'Textbox' are supported which result in a datetime html
 Types are case insensitive.
 
 
-Now start `node app.js` and navigate your browser to `http://localhost:3000/tests`
+To start the application use `node app.js` and navigate the browser to `http://localhost:3000/tests`
 
 ### Scaffolding restful routes
 
