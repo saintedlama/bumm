@@ -17,7 +17,7 @@
     "optimist": "0.6.x",
     "wrench": "1.5.x",
     "fleck": "0.5.x",
-    "prompt": "0.2.x"
+    "prompt": "1.1.0"
   },
   "devDependencies": {
     "mocha": "1.10.x",
